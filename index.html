@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMART SIM DIGITAL</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f2f2f2;
+}
+
+/* Loading */
+#loading{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#0b1220;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+#loading img{
+width:130px;
+height:130px;
+object-fit:contain;
+animation:zoom 1s infinite alternate;
+}
+
+@keyframes zoom{
+from{transform:scale(1);}
+to{transform:scale(1.08);}
+}
+
+#loading h2{
+color:white;
+margin-top:20px;
+}
+
+#loading p{
+color:#ccc;
+margin-top:10px;
+}
+
+/* Halaman */
+#content{
+display:none;
+max-width:430px;
+margin:20px auto;
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 0 15px rgba(0,0,0,.2);
+}
+
+.header{
+background:#0047AB;
+color:white;
+padding:18px;
+text-align:center;
+font-size:22px;
+font-weight:bold;
+}
+
+.sim{
+padding:15px;
+}
+
+.sim img{
+width:100%;
+border-radius:10px;
+}
+
+.status{
+margin-top:15px;
+background:#e7ffe7;
+padding:12px;
+text-align:center;
+font-weight:bold;
+color:green;
+border-radius:8px;
+}
+
+.footer{
+padding:15px;
+text-align:center;
+color:#666;
+font-size:14px;
+}
+</style>
+
+</head>
+<body>
+
+<div id="loading">
+<img src="logo.png">
+<h2>SMART SIM DIGITAL</h2>
+<p>Memverifikasi Data...</p>
+</div>
+
+<div id="content">
+
+<div class="header">
+SMART SIM DIGITAL
+</div>
+
+<div class="sim">
+
+<img id="foto" src="001.jpg">
+
+<div class="status">
+🟢 STATUS : VALID
+</div>
+
+</div>
+
+<div class="footer">
+© Digital Korlantas
+</div>
+
+</div>
+
+<script>
+
+const id=new URLSearchParams(window.location.search).get("id")||"001";
+
+const foto=document.getElementById("foto");
+
+foto.src=id+".jpg";
+
+foto.onerror=function(){
+
+document.querySelector(".sim").innerHTML=
+"<h2 style='color:red;text-align:center'>DATA TIDAK DITEMUKAN</h2><br><p style='text-align:center'>ID : "+id+"</p>";
+
+}
+
+setTimeout(function(){
+
+document.getElementById("loading").style.display="none";
+
+document.getElementById("content").style.display="block";
+
+},2000);
+
+</script>
+
+</body>
+</html>
